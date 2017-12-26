@@ -1,4 +1,5 @@
 FROM debian:stretch
+MAINTAINER Simon Erhardt <hello@rootlogin.ch>
 
 ENV TINI_VERSION=v0.16.1 \
   SWARM_CLIENT_VERSION=3.7 \
