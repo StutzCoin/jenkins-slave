@@ -71,6 +71,19 @@ RUN set -ex \
 
 ENV LC_ALL en_US.UTF-8
 
+RUN set -ex \
+  && cd /tmp \
+  && wget http://download.oracle.com/berkeley-db/db-4.8.30.NC.tar.gz \
+  && tar -xzvf db-4.8.30.NC.tar.gz \
+  && cd db-4.8.30.NC/build_unix \
+  && ../dist/configure --enable-cxx \
+  && make \
+  && make install \
+  && ln -s /usr/local/BerkeleyDB.4.8/lib/libdb-4.8.so /usr/lib/libdb-4.8.so
+
+ENV BDB_INCLUDE_PATH=/usr/local/BerkeleyDB.4.8/include \
+  BDB_LIB_PATH=/usr/local/BerkeleyDB.4.8/lib
+
 VOLUME ["/home/jenkins"]
 
 ENTRYPOINT ["/usr/local/bin/tini", "--"]
