@@ -24,24 +24,47 @@ RUN set -ex \
   && DEBIAN_FRONTEND=noninteractive apt-get install --no-install-recommends -y \
   ansible \
   apt-transport-https \
+  automake \
+  autotools-dev \
+  bsdmainutils \
   build-essential \
   ca-certificates \
   curl \
   git \
   gnupg \
+  libboost-all-dev \
+  libevent-dev \
+  libminiupnpc-dev \
+  libprotobuf-dev \
+  libqrencode-dev \
+  libqt4-dev \
+  libssl-dev \
+  libtool \
+  libzmq3-dev \
   locales \
   lsof \
   openjdk-8-jre-headless \
   openssh-client \
   openssl \
+  pkg-config \
+  protobuf-compiler \
   rsync \
+  software-properties-common \
   sshpass \
   sudo \
   util-linux \
   wget \
   zip \
+  && add-apt-repository ppa:bitcoin/bitcoin \
+  && apt-get update \
+  && DEBIAN_FRONTEND=noninteractive apt-get install --no-install-recommends -y \
+    libdb4.8-dev libdb4.8++-dev \
   && apt-get autoremove -y \
   && apt-get clean
+
+
+
+
 
 RUN set -ex \
   && wget -O /usr/local/bin/swarm-client.jar https://repo.jenkins-ci.org/releases/org/jenkins-ci/plugins/swarm-client/${SWARM_CLIENT_VERSION}/swarm-client-${SWARM_CLIENT_VERSION}.jar \
