@@ -38,7 +38,9 @@ RUN set -ex \
   libminiupnpc-dev \
   libprotobuf-dev \
   libqrencode-dev \
-  libqt4-dev \
+  libqt5core5a \
+  libqt5dbus5 \
+  libqt5gui5 \
   libssl-dev \
   libtool \
   libzmq3-dev \
@@ -49,6 +51,8 @@ RUN set -ex \
   openssl \
   pkg-config \
   protobuf-compiler \
+  qttools5-dev \
+  qttools5-dev-tools \
   rsync \
   software-properties-common \
   sshpass \
@@ -83,7 +87,8 @@ RUN set -ex \
   && ln -s /usr/local/BerkeleyDB.4.8/lib/libdb-4.8.so /usr/lib/libdb-4.8.so
 
 ENV BDB_INCLUDE_PATH=/usr/local/BerkeleyDB.4.8/include \
-  BDB_LIB_PATH=/usr/local/BerkeleyDB.4.8/lib
+  BDB_LIB_PATH=/usr/local/BerkeleyDB.4.8/lib \
+  BDB_PREFIX=/usr/local/BerkeleyDB.4.8
 
 VOLUME ["/home/jenkins"]
 
