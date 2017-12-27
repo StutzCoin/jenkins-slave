@@ -1,4 +1,4 @@
-FROM debian:stretch
+FROM debian:9
 MAINTAINER Simon Erhardt <hello@rootlogin.ch>
 
 ENV TINI_VERSION=v0.16.1 \
