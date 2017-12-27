@@ -84,7 +84,8 @@ RUN set -ex \
   && ../dist/configure --enable-cxx \
   && make \
   && make install \
-  && ln -s /usr/local/BerkeleyDB.4.8/lib/libdb-4.8.so /usr/lib/libdb-4.8.so
+  && ln -s /usr/local/BerkeleyDB.4.8/lib/libdb-4.8.so /usr/lib/libdb-4.8.so \
+  && ln -s /usr/local/BerkeleyDB.4.8/lib/libdb_cxx-4.8.so /usr/lib/libdb_cxx-4.8.so
 
 ENV BDB_INCLUDE_PATH=/usr/local/BerkeleyDB.4.8/include \
   BDB_LIB_PATH=/usr/local/BerkeleyDB.4.8/lib \
