@@ -54,6 +54,7 @@ RUN set -ex \
   qttools5-dev \
   qttools5-dev-tools \
   rsync \
+  s3cmd \
   software-properties-common \
   sshpass \
   sudo \
