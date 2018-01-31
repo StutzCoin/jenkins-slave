@@ -2,7 +2,7 @@ FROM debian:9
 MAINTAINER Simon Erhardt <hello@rootlogin.ch>
 
 ENV TINI_VERSION=v0.16.1 \
-  SWARM_CLIENT_VERSION=3.7 \
+  SWARM_CLIENT_VERSION=3.8 \
   JENKINS_MASTER=https://example.org \
   JENKINS_USERNAME=jenkins \
   JENKINS_PASSWORD=jenkins \
