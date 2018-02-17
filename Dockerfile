@@ -61,6 +61,10 @@ RUN set -ex \
   util-linux \
   wget \
   zip \
+  g++-mingw-w64-x86-64 \
+  mingw-w64-x86-64-dev \
+  g++-mingw-w64-i686 \
+  mingw-w64-i686-dev \
   && apt-get autoremove -y \
   && apt-get clean
 
