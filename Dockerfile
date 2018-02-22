@@ -1,8 +1,8 @@
-FROM debian:9
+FROM ubuntu:17.10
 MAINTAINER Simon Erhardt <hello@rootlogin.ch>
 
 ENV TINI_VERSION=v0.16.1 \
-  SWARM_CLIENT_VERSION=3.8 \
+  SWARM_CLIENT_VERSION=3.10 \
   JENKINS_MASTER=https://example.org \
   JENKINS_USERNAME=jenkins \
   JENKINS_PASSWORD=jenkins \
@@ -61,12 +61,16 @@ RUN set -ex \
   util-linux \
   wget \
   zip \
+  cmake \
   g++-mingw-w64-x86-64 \
   mingw-w64-x86-64-dev \
   g++-mingw-w64-i686 \
   mingw-w64-i686-dev \
   && apt-get autoremove -y \
   && apt-get clean
+
+RUN update-alternatives --set x86_64-w64-mingw32-g++ /usr/bin/x86_64-w64-mingw32-g++-posix
+RUN update-alternatives --set i686-w64-mingw32-g++ /usr/bin/i686-w64-mingw32-g++-posix
 
 RUN set -ex \
   && wget -O /usr/local/bin/swarm-client.jar https://repo.jenkins-ci.org/releases/org/jenkins-ci/plugins/swarm-client/${SWARM_CLIENT_VERSION}/swarm-client-${SWARM_CLIENT_VERSION}.jar \
