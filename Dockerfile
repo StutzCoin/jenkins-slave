@@ -75,6 +75,13 @@ RUN set -ex \
   nsis \
   wine1.6 \
   bc \
+  imagemagick \
+  libcap-dev \
+  librsvg2-bin \
+  libz-dev \
+  libbz2-dev \
+  libtiff-tools \
+  python-dev \
   && apt-get autoremove -y \
   && apt-get clean
 
