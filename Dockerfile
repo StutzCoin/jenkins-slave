@@ -20,6 +20,8 @@ RUN set -ex \
   && chmod +x /usr/local/bin/tini \
   && chmod +x /usr/local/bin/jq
 
+RUN dpkg --add-architecture i386
+
 RUN set -ex \
   && apt-get update \
   && DEBIAN_FRONTEND=noninteractive apt-get install -y \
@@ -66,6 +68,20 @@ RUN set -ex \
   mingw-w64-x86-64-dev \
   g++-mingw-w64-i686 \
   mingw-w64-i686-dev \
+  g++-arm-linux-gnueabihf \
+  python3 \
+  python3-dev \
+  python3-pip \
+  nsis \
+  wine1.6 \
+  bc \
+  imagemagick \
+  libcap-dev \
+  librsvg2-bin \
+  libz-dev \
+  libbz2-dev \
+  libtiff-tools \
+  python-dev \
   && apt-get autoremove -y \
   && apt-get clean
 
