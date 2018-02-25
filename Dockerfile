@@ -22,7 +22,7 @@ RUN set -ex \
 
 RUN set -ex \
   && apt-get update \
-  && DEBIAN_FRONTEND=noninteractive apt-get install --no-install-recommends -y \
+  && DEBIAN_FRONTEND=noninteractive apt-get install -y \
   ansible \
   apt-transport-https \
   automake \
