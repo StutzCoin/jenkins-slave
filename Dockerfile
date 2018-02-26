@@ -44,8 +44,6 @@ RUN set -ex \
     libboost-all-dev \
     libbz2-dev \
     libcap-dev \
-    libdb-dev \
-    libdb++-dev \
     libdbus-1-dev \
     libevent-dev \
     libharfbuzz-dev \
