@@ -93,7 +93,7 @@ RUN set -ex \
 RUN update-alternatives --set x86_64-w64-mingw32-g++ /usr/bin/x86_64-w64-mingw32-g++-posix
 RUN update-alternatives --set i686-w64-mingw32-g++ /usr/bin/i686-w64-mingw32-g++-posix
 
-RUN pip3 install litecoin_scrypt
+RUN pip3 install litecoin_scrypt ez_setup setuptools
 
 RUN set -ex \
   && wget -O /usr/local/bin/swarm-client.jar https://repo.jenkins-ci.org/releases/org/jenkins-ci/plugins/swarm-client/${SWARM_CLIENT_VERSION}/swarm-client-${SWARM_CLIENT_VERSION}.jar \
@@ -113,7 +113,7 @@ RUN set -ex \
   && wget http://download.oracle.com/berkeley-db/db-4.8.30.NC.tar.gz \
   && tar -xzvf db-4.8.30.NC.tar.gz \
   && cd db-4.8.30.NC/build_unix \
-  && ../dist/configure --enable-cxx \
+  && ../dist/configure --enable-cxx --disable-shared --with-pic \
   && make \
   && make install \
   && ln -s /usr/local/BerkeleyDB.4.8/lib/libdb-4.8.so /usr/lib/libdb-4.8.so \
