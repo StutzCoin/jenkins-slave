@@ -36,6 +36,7 @@ RUN set -ex \
     cmake \
     curl \
     g++-arm-linux-gnueabihf \
+    gcc-arm-linux-gnueabihf \
     git \
     g++-mingw-w64-i686 \
     g++-mingw-w64-x86-64 \
