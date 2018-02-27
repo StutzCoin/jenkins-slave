@@ -1,4 +1,4 @@
-FROM ubuntu:16.04
+FROM ubuntu:17.10
 MAINTAINER Simon Erhardt <hello@rootlogin.ch>
 
 ENV TINI_VERSION=v0.16.1 \
@@ -35,8 +35,6 @@ RUN set -ex \
     ca-certificates \
     cmake \
     curl \
-    g++-arm-linux-gnueabihf \
-    gcc-arm-linux-gnueabihf \
     git \
     g++-mingw-w64-i686 \
     g++-mingw-w64-x86-64 \
