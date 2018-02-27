@@ -122,6 +122,11 @@ RUN set -ex \
 ENV BDB_INCLUDE_PATH=/usr/local/BerkeleyDB.4.8/include \
   BDB_LIB_PATH=/usr/local/BerkeleyDB.4.8/lib \
   BDB_PREFIX=/usr/local/BerkeleyDB.4.8
+  
+RUN echo '/usr/local/BerkeleyDB.4.8/lib/' >> /etc/ld.so.conf
+RUN ldconfig
+
+
 
 VOLUME ["/home/jenkins"]
 
