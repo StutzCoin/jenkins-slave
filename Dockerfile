@@ -40,6 +40,7 @@ RUN set -ex \
     g++-mingw-w64-i686 \
     g++-mingw-w64-x86-64 \
     g++-multilib \
+    gcc-multilib \
     gnupg \
     imagemagick \
     libboost-all-dev \
