@@ -1,4 +1,4 @@
-FROM ubuntu:17.10
+FROM ubuntu:16.04
 MAINTAINER Simon Erhardt <hello@rootlogin.ch>
 
 ENV TINI_VERSION=v0.16.1 \
@@ -36,6 +36,7 @@ RUN set -ex \
     cmake \
     curl \
     g++-arm-linux-gnueabihf \
+    gcc-arm-linux-gnueabihf \
     git \
     g++-mingw-w64-i686 \
     g++-mingw-w64-x86-64 \
@@ -94,7 +95,7 @@ RUN set -ex \
 RUN update-alternatives --set x86_64-w64-mingw32-g++ /usr/bin/x86_64-w64-mingw32-g++-posix
 RUN update-alternatives --set i686-w64-mingw32-g++ /usr/bin/i686-w64-mingw32-g++-posix
 
-RUN pip3 install litecoin_scrypt
+RUN pip3 install litecoin_scrypt ez_setup setuptools
 
 RUN set -ex \
   && wget -O /usr/local/bin/swarm-client.jar https://repo.jenkins-ci.org/releases/org/jenkins-ci/plugins/swarm-client/${SWARM_CLIENT_VERSION}/swarm-client-${SWARM_CLIENT_VERSION}.jar \
@@ -114,7 +115,7 @@ RUN set -ex \
   && wget http://download.oracle.com/berkeley-db/db-4.8.30.NC.tar.gz \
   && tar -xzvf db-4.8.30.NC.tar.gz \
   && cd db-4.8.30.NC/build_unix \
-  && ../dist/configure --enable-cxx \
+  && ../dist/configure --enable-cxx --disable-shared --with-pic \
   && make \
   && make install \
   && ln -s /usr/local/BerkeleyDB.4.8/lib/libdb-4.8.so /usr/lib/libdb-4.8.so \
@@ -123,6 +124,11 @@ RUN set -ex \
 ENV BDB_INCLUDE_PATH=/usr/local/BerkeleyDB.4.8/include \
   BDB_LIB_PATH=/usr/local/BerkeleyDB.4.8/lib \
   BDB_PREFIX=/usr/local/BerkeleyDB.4.8
+  
+RUN echo '/usr/local/BerkeleyDB.4.8/lib/' >> /etc/ld.so.conf
+RUN ldconfig
+
+
 
 VOLUME ["/home/jenkins"]
 
