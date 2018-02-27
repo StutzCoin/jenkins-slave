@@ -24,7 +24,7 @@ RUN dpkg --add-architecture i386
 
 RUN set -ex \
   && apt-get update \
-  && apt-get upgrade \
+  && apt-get upgrade -y \
   && DEBIAN_FRONTEND=noninteractive apt-get install -y \
     ansible \
     apt-transport-https \
