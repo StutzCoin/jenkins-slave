@@ -1,4 +1,4 @@
-FROM ubuntu:17.10
+FROM ubuntu:16.04
 MAINTAINER Simon Erhardt <hello@rootlogin.ch>
 
 ENV TINI_VERSION=v0.16.1 \
@@ -24,6 +24,7 @@ RUN dpkg --add-architecture i386
 
 RUN set -ex \
   && apt-get update \
+  && apt-get upgrade -y \
   && DEBIAN_FRONTEND=noninteractive apt-get install -y \
     ansible \
     apt-transport-https \
@@ -89,9 +90,12 @@ RUN set -ex \
     util-linux \
     wget \
     wine1.6 \
-    zip \
-  && apt-get autoremove -y \
-  && apt-get clean
+    zip 
+    
+RUN DEBIAN_FRONTEND=noninteractive apt-get install -y g++-arm-linux-gnueabihf
+    
+RUN apt-get autoremove -y
+RUN apt-get clean
 
 RUN update-alternatives --set x86_64-w64-mingw32-g++ /usr/bin/x86_64-w64-mingw32-g++-posix
 RUN update-alternatives --set i686-w64-mingw32-g++ /usr/bin/i686-w64-mingw32-g++-posix
