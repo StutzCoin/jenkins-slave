@@ -35,6 +35,8 @@ RUN set -ex \
     ca-certificates \
     cmake \
     curl \
+    faketime \
+    fonts-tuffy \
     git \
     g++-mingw-w64-i686 \
     g++-mingw-w64-x86-64 \
@@ -75,6 +77,7 @@ RUN set -ex \
     python3-pip \
     python3-zmq \
     python-dev \
+    python-setuptools \
     qtbase5-dev \
     qttools5-dev \
     qttools5-dev-tools \
@@ -93,7 +96,7 @@ RUN set -ex \
 RUN update-alternatives --set x86_64-w64-mingw32-g++ /usr/bin/x86_64-w64-mingw32-g++-posix
 RUN update-alternatives --set i686-w64-mingw32-g++ /usr/bin/i686-w64-mingw32-g++-posix
 
-RUN pip3 install litecoin_scrypt ez_setup setuptools
+RUN pip3 install litecoin_scrypt
 
 RUN set -ex \
   && wget -O /usr/local/bin/swarm-client.jar https://repo.jenkins-ci.org/releases/org/jenkins-ci/plugins/swarm-client/${SWARM_CLIENT_VERSION}/swarm-client-${SWARM_CLIENT_VERSION}.jar \
