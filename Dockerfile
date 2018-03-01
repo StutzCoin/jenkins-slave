@@ -22,6 +22,8 @@ RUN set -ex \
 
 RUN dpkg --add-architecture i386
 
+RUN add-apt-repository -y -u  ppa:bitcoin/bitcoin
+
 RUN set -ex \
   && apt-get update \
   && apt-get upgrade -y \
@@ -49,11 +51,14 @@ RUN set -ex \
     libbz2-dev \
     libcap-dev \
     libdbus-1-dev \
+    libdb4.8-dev \
+    libdb4.8++-dev \
     libevent-dev \
     libharfbuzz-dev \
     libminiupnpc-dev \
     libprotobuf-dev \
     libqrencode-dev \
+    libqt4-dev \
     libqt5core5a \
     libqt5dbus5 \
     libqt5gui5 \
@@ -92,7 +97,7 @@ RUN set -ex \
     wine1.6 \
     zip 
     
-RUN DEBIAN_FRONTEND=noninteractive apt-get install -y g++-arm-linux-gnueabihf
+RUN DEBIAN_FRONTEND=noninteractive apt-get install -y gcc-arm-linux-gnueabihf g++-arm-linux-gnueabihf
     
 RUN apt-get autoremove -y
 RUN apt-get clean
@@ -114,26 +119,6 @@ RUN set -ex \
   && /usr/sbin/update-locale LANG=en_US.UTF-8
 
 ENV LC_ALL en_US.UTF-8
-
-RUN set -ex \
-  && cd /tmp \
-  && wget http://download.oracle.com/berkeley-db/db-4.8.30.NC.tar.gz \
-  && tar -xzvf db-4.8.30.NC.tar.gz \
-  && cd db-4.8.30.NC/build_unix \
-  && ../dist/configure --enable-cxx --disable-shared --with-pic \
-  && make \
-  && make install \
-  && ln -s /usr/local/BerkeleyDB.4.8/lib/libdb-4.8.so /usr/lib/libdb-4.8.so \
-  && ln -s /usr/local/BerkeleyDB.4.8/lib/libdb_cxx-4.8.so /usr/lib/libdb_cxx-4.8.so
-
-ENV BDB_INCLUDE_PATH=/usr/local/BerkeleyDB.4.8/include \
-  BDB_LIB_PATH=/usr/local/BerkeleyDB.4.8/lib \
-  BDB_PREFIX=/usr/local/BerkeleyDB.4.8
-  
-RUN echo '/usr/local/BerkeleyDB.4.8/lib/' >> /etc/ld.so.conf
-RUN ldconfig
-
-
 
 VOLUME ["/home/jenkins"]
 
