@@ -22,7 +22,6 @@ RUN set -ex \
 
 RUN dpkg --add-architecture i386
 
-RUN add-apt-repository -y -u  ppa:bitcoin/bitcoin
 
 RUN set -ex \
   && apt-get update \
@@ -51,8 +50,6 @@ RUN set -ex \
     libbz2-dev \
     libcap-dev \
     libdbus-1-dev \
-    libdb4.8-dev \
-    libdb4.8++-dev \
     libevent-dev \
     libharfbuzz-dev \
     libminiupnpc-dev \
@@ -99,6 +96,10 @@ RUN set -ex \
     
 RUN DEBIAN_FRONTEND=noninteractive apt-get install -y gcc-arm-linux-gnueabihf g++-arm-linux-gnueabihf
     
+RUN add-apt-repository -y -u ppa:bitcoin/bitcoin
+
+RUN DEBIAN_FRONTEND=noninteractive apt-get install -y libdb4.8-dev libdb4.8++-dev
+
 RUN apt-get autoremove -y
 RUN apt-get clean
 
