@@ -42,8 +42,7 @@ RUN set -ex \
     git \
     g++-mingw-w64-i686 \
     g++-mingw-w64-x86-64 \
-    g++-multilib \
-    gcc-multilib \
+
     gnupg \
     imagemagick \
     libboost-all-dev \
@@ -93,8 +92,12 @@ RUN set -ex \
     wget \
     wine1.6 \
     zip 
-    
-RUN DEBIAN_FRONTEND=noninteractive apt-get install -y gcc-arm-linux-gnueabihf g++-arm-linux-gnueabihf
+
+# The following dependencies are in conflict with each other, so the build job has to trigger the installation.
+#RUN DEBIAN_FRONTEND=noninteractive apt-get install -y gcc-arm-linux-gnueabihf g++-arm-linux-gnueabihf
+#RUN DEBIAN_FRONTEND=noninteractive apt-get install -y g++-multilib gcc-multilib
+
+
     
 RUN add-apt-repository -y -u ppa:bitcoin/bitcoin
 
