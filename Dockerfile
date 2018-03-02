@@ -1,4 +1,4 @@
-FROM ubuntu:16.04
+FROM ubuntu:17.10
 MAINTAINER Simon Erhardt <hello@rootlogin.ch>
 
 ENV TINI_VERSION=v0.16.1 \
